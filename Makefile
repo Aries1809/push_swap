@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/11 18:41:13 by kseltenr         #+#    #+#               #
-#    Updated: 2026/10/11 18:50:12 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/10/11 19:17:14 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= push_swap
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-CPPFLAGS	= -MMD -MP I inc -I libft
+CPPFLAGS	= -MMD -MP -I inc -I libft
 DEBUG		?= 0
 RM			= rm -f
 
@@ -31,7 +31,7 @@ OBJ_DIR		= obj
 LIBFT_DIR	= libft
 
 LIBFT		= $(LIBFT_DIR)/libft.a
-SRCS		= $(SRC_DIR)/main.c
+SRCS		= $(SRC_DIR)/push_swap.c $(SRC_DIR)/disorder.c
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
 
