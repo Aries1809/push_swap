@@ -13,4 +13,12 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdint.h>
+
+typedef struct t_ps
+{
+	int8_t	bench;
+	int8_t	flags;
+}			s_ps;
+
 #endif
