@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/21 04:44:05 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/07 23:07:57 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/07 23:17:55 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	ps_is_flag(char *str, s_ps *flag)
+void	ps_is_flag(char *str, t_ps *flag)
 {
 	if (!ft_memcmp(str, "--simple", ft_strlen(str)))
 		flag->flags = 1;
@@ -57,7 +57,16 @@ void	stack_add(t_stack *stack, uint64_t *x, int num, t_stack *temp)
 	stack = stack->next;
 }
 
-t_stack	ps_parse(int32_t ac, char **av, s_ps *flag)
+void init_flag(t_ps *flag)
+{
+	if (!flag)
+		return ;
+	flag->flags = 4;
+	flag->bench = 0;
+	return ;
+}
+
+t_stack	ps_parse(int32_t ac, char **av, t_ps *flag)
 {
 	uint32_t	cnt_av;
 	t_stack		stack;
