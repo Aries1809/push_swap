@@ -21,4 +21,12 @@ typedef struct t_ps
 	int8_t	flags;
 }			s_ps;
 
+typedef struct t_stack
+{
+	uint64_t			index;
+	int64_t				value;
+	struct t_stack		*prev;
+	struct t_stack		*next;
+}						s_stack;
+
 #endif
