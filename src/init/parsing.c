@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/21 04:44:05 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/10/21 16:26:34 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/04 09:19:06 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ps_is_flag(char *str, s_ps *flag)
 		flag->bench = 1;
 	else
 	{
-		ft_dprintf(2, "Error: Invalid flag\n");
+		ft_dprintf(2, "Error\n");
 		exit(1);
 	}
 	return ;
