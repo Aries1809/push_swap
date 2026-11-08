@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                       :::      ::::::::    */
-/*   op1.c                                             :+:      :+:    :+:    */
-/*                                                   +:+ +:+         +:+      */
-/*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
-/*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/11/04 09:29:03 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/04 09:40:05 by kseltenr        ###   ########.fr        */
+/*                                                        :::      ::::::::   */
+/*   op1.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/11/04 09:29:03 by kseltenr          #+#    #+#             */
+/*   Updated: 2026/11/08 12:00:00 by kseltenr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(s_stack *start)
+/* Swap the first two elements at the top of the stack. */
+void	sa(t_stack *stack)
 {
-	s_stack	temp;
+	int32_t	temp;
 
-
+	if (!stack || !stack->next)
+		return ;
+	temp = stack->value;
+	stack->value = stack->next->value;
+	stack->next->value = temp;
 }

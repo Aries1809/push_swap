@@ -1,3 +1,7 @@
+*.pdf
+push_swap
+obj
+
 # Prerequisites
 *.d
 

@@ -14,7 +14,7 @@ NAME		= push_swap
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
-CPPFLAGS	= -MMD -MP -I inc -I libft
+CPPFLAGS	= -MMD -MP -I inc -I $(LIBFT_DIR)/inc
 DEBUG		?= 0
 RM			= rm -f
 
@@ -31,7 +31,11 @@ OBJ_DIR		= obj
 LIBFT_DIR	= libft
 
 LIBFT		= $(LIBFT_DIR)/libft.a
-SRCS		= $(SRC_DIR)/push_swap.c
+SRCS		= $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/disorder.c \
+			  $(SRC_DIR)/init/parsing.c \
+			  $(SRC_DIR)/init/stack.c \
+			  $(SRC_DIR)/operations/op1.c
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
 
@@ -43,7 +47,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(dir $@)
