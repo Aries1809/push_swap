@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/11 18:41:13 by kseltenr         #+#    #+#               #
-#    Updated: 2026/11/09 05:32:35 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/09 16:14:20 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CPPFLAGS	= -MMD -MP -I inc -I $(LIBFT_DIR)/inc
 DEBUG		?= 0
 RM			= rm -f
 
+# nproc fails on mac but it should be fine cause we use linux
 JOBS		?= $(shell nproc)
 MAKEFLAGS	+= -j $(JOBS) -l $(JOBS)
 

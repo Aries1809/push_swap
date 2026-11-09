@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/09 05:32:51 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/09 16:13:15 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <stdint.h>
 
+// index is just the argument position rn which is kinda useless
+// we might want to change it to the sorted index, but we'd need to do stuff for that
+// (it would be useful for radix or chunk sorting)
 typedef struct s_node
 {
 	uint64_t		index;
@@ -27,7 +30,7 @@ typedef struct s_stack
 {
 	t_node	*top;
 	t_node	*bot;
-	int32_t	size;
+	uint64_t	size;
 }	t_stack;
 
 typedef enum e_strat
