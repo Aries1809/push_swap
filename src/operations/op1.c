@@ -17,9 +17,9 @@ void	sa(t_stack *stack)
 {
 	int32_t	temp;
 
-	if (!stack || !stack->next)
+	if (!stack || stack->size < 2)
 		return ;
-	temp = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = temp;
+	temp = stack->top->value;
+	stack->top->value = stack->top->next->value;
+	stack->top->next->value = temp;
 }

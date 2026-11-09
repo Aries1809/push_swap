@@ -17,21 +17,23 @@ double	ps_disorder(t_stack *stack)
 {
 	double	mistakes;
 	double	pairs;
-	t_stack	*cur;
+	t_node	*node;
+	t_node	*cur;
 
 	pairs = 0;
 	mistakes = 0;
-	while (stack)
+	node = stack->top;
+	while (node)
 	{
-		cur = stack->next;
+		cur = node->next;
 		while (cur)
 		{
 			pairs += 1;
-			if (stack->value > cur->value)
+			if (node->value > cur->value)
 				mistakes += 1;
 			cur = cur->next;
 		}
-		stack = stack->next;
+		node = node->next;
 	}
 	if (pairs == 0)
 		return (0);

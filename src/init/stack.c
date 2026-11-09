@@ -6,52 +6,58 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:00:00 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/08 21:47:14 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/09 04:44:30 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 
-int32_t	stack_add(t_stack **head, t_stack **tail, int32_t value,
-		uint64_t index)
+/* Append a new node at the bottom of the stack. */
+int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index)
 {
-	t_stack	*node;
+	t_node	*node;
 
-	node = malloc(sizeof(t_stack));
+	node = malloc(sizeof(t_node));
 	if (!node)
 		return (0);
 	node->index = index;
 	node->value = value;
-	node->prev = *tail;
+	node->prev = stack->bot;
 	node->next = NULL;
-	if (*tail)
-		(*tail)->next = node;
+	if (stack->bot)
+		stack->bot->next = node;
 	else
-		*head = node;
-	*tail = node;
+		stack->top = node;
+	stack->bot = node;
+	stack->size++;
 	return (1);
 }
 
 int32_t	stack_has_value(t_stack *stack, int32_t value)
 {
-	while (stack)
+	t_node	*cur;
+
+	cur = stack->top;
+	while (cur)
 	{
-		if (stack->value == value)
+		if (cur->value == value)
 			return (1);
-		stack = stack->next;
+		cur = cur->next;
 	}
 	return (0);
 }
 
-void	stack_free(t_stack **stack)
+void	stack_free(t_stack *stack)
 {
-	t_stack	*next;
+	t_node	*next;
 
-	while (*stack)
+	while (stack->top)
 	{
-		next = (*stack)->next;
-		free(*stack);
-		*stack = next;
+		next = stack->top->next;
+		free(stack->top);
+		stack->top = next;
 	}
+	stack->bot = NULL;
+	stack->size = 0;
 }

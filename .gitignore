@@ -1,6 +1,7 @@
 *.pdf
 push_swap
 obj
+compile_commands.json
 
 # Prerequisites
 *.d
