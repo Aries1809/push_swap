@@ -18,5 +18,6 @@ int	main(int argc, char **argv)
 
 	ps_parse(argc, argv, &ps);
 	stack_free(&ps.a);
+	stack_free(&ps.b);
 	return (0);
 }

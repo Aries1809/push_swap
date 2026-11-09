@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/09 03:41:54 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/09 03:57:07 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/09 05:31:21 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@
 static void	ps_apply(t_ps *ps, t_op op)
 {
 	if (op == OP_SA || op == OP_SS)
-		// swap a
+		st_swap(&ps->a);
 	if (op == OP_SB || op == OP_SS)
-		// swap b
+		st_swap(&ps->b);
 	if (op == OP_PA)
-		// push b -> a
+		st_push(&ps->b, &ps->a);
 	if (op == OP_PB)
-		// push a -> b
+		st_push(&ps->a, &ps->b);
 	if (op == OP_RA || op == OP_RR)
-		// rotate a
+		st_rotate(&ps->a);
 	if (op == OP_RB || op == OP_RR)
-		// rotate b
+		st_rotate(&ps->b);
 	if (op == OP_RRA || op == OP_RRR)
-		// rrotate a
+		st_rrotate(&ps->a);
 	if (op == OP_RRB || op == OP_RRR)
-		// rrotate b
+		st_rrotate(&ps->b);
 }
 
-static void ps_op_print(t_op op)
+static void	ps_op_print(t_op op)
 {
 	const char	*names;
 	uint8_t		len;

@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/08 12:00:00 by kseltenr         ###   ########.fr       */
+/*   Updated: 2026/11/09 05:32:51 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	ps_parse(int32_t ac, char **av, t_ps *ps);
 
 /* STACK.C */
 int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index);
-int32_t	stack_has_value(t_stack *stack, int32_t value);
 void	stack_free(t_stack *stack);
+int32_t	stack_has_value(t_stack *stack, int32_t value);
 
 /* DISORDER.C */
 double	ps_disorder(t_stack *stack);
@@ -81,7 +81,18 @@ double	ps_disorder(t_stack *stack);
 void	ps_op(t_ps *ps, t_op op);
 void	ps_op_n(t_ps *ps, t_op op, int64_t n);
 
-/* OP1.C */
-void	sa(t_stack *stack);
+/* OP_HELPERS.C */
+
+t_node	*st_pop_bot(t_stack *s);
+t_node	*st_pop_top(t_stack *s);
+void	st_push_bot(t_stack *s, t_node *n);
+void	st_push_top(t_stack *s, t_node *n);
+
+/* PRIMITIVES.C */
+
+void	st_push(t_stack *from, t_stack *to);
+void	st_rotate(t_stack *s);
+void	st_rrotate(t_stack *s);
+void	st_swap(t_stack *s);
 
 #endif

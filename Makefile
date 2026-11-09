@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/11 18:41:13 by kseltenr         #+#    #+#               #
-#    Updated: 2026/10/31 18:44:35 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/09 05:32:35 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/disorder.c \
 			  $(SRC_DIR)/init/parsing.c \
 			  $(SRC_DIR)/init/stack.c \
-			  $(SRC_DIR)/operations/op1.c
+			  $(SRC_DIR)/operations/ops.c \
+			  $(SRC_DIR)/operations/op_helpers.c \
+			  $(SRC_DIR)/operations/primitives.c
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
 

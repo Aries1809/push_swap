@@ -47,7 +47,7 @@ static int32_t	ps_is_flag(const char *str, t_ps *flag)
 	return (1);
 }
 
-/* Parses one number from *str up to a space or '\0' and advances *str. */
+/* Parses one number from *str up to a space, tab or '\0' and advances *str. */
 static int32_t	ps_atoi(const char **str, int32_t *out)
 {
 	int64_t		num;
@@ -63,7 +63,7 @@ static int32_t	ps_atoi(const char **str, int32_t *out)
 		s++;
 	if (!ft_isdigit(*s))
 		return (0);
-	while (*s && *s != ' ')
+	while (*s && *s != ' ' && *s != '\t')
 	{
 		if (!ft_isdigit(*s))
 			return (0);
@@ -77,8 +77,8 @@ static int32_t	ps_atoi(const char **str, int32_t *out)
 	return (1);
 }
 
-/* Adds every space-separated number in str to stack a.
- * An argument with no numbers at all ("" or "   ") is an error. */
+/* Adds every space/tab-separated number in str to stack a.
+ * An argument with no numbers at all ("", "   " or tabs only) is an error. */
 static int32_t	ps_add_arg(t_ps *ps, const char *str, uint64_t *index)
 {
 	int32_t	num;
@@ -87,7 +87,7 @@ static int32_t	ps_add_arg(t_ps *ps, const char *str, uint64_t *index)
 	count = 0;
 	while (*str)
 	{
-		if (*str == ' ')
+		if (*str == ' ' || *str == '\t')
 			str++;
 		else if (!ps_atoi(&str, &num) || stack_has_value(&ps->a, num)
 			|| !stack_add(&ps->a, num, (*index)++))
