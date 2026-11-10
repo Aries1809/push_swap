@@ -1,5 +1,6 @@
 *.pdf
 push_swap
+checker
 obj
 compile_commands.json
 
