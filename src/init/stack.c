@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:00:00 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 01:49:51 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 04:58:13 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ int32_t	stack_has_value(t_stack *stack, int32_t value)
 		cur = cur->next;
 	}
 	return (0);
+}
+
+bool	stack_is_sorted(t_stack *s)
+{
+	t_node	*n;
+
+	n = s->top;
+	while (n && n->next)
+	{
+		if (n->value > n->next->value)
+			return (false);
+		n = n->next;
+	}
+	return (true);
 }
 
 void	stack_free(t_stack *stack)

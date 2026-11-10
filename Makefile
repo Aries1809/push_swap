@@ -6,11 +6,12 @@
 #    By: kseltenr <kseltenr@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/09 19:10:29 by kseltenr          #+#    #+#              #
-#    Updated: 2026/11/10 03:31:19 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/10 05:08:38 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= push_swap
+CHECKER		= checker
 
 CC			= cc
 CFLAGS		= -Wall -Wextra -Werror
@@ -32,8 +33,7 @@ OBJ_DIR		= obj
 LIBFT_DIR	= libft
 
 LIBFT		= $(LIBFT_DIR)/libft.a
-SRCS		= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/init/parsing.c \
+SHARED_SRCS	= $(SRC_DIR)/init/parsing.c \
 			  $(SRC_DIR)/init/stack.c \
 			  $(SRC_DIR)/operations/ops.c \
 			  $(SRC_DIR)/operations/op_helpers.c \
@@ -41,8 +41,12 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/algorithms/simple.c \
 			  $(SRC_DIR)/bench/disorder.c \
 			  $(SRC_DIR)/bench/bench.c
-OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-DEPS		= $(OBJS:.o=.d)
+MAIN_SRCS	= $(SRC_DIR)/main.c
+BONUS_SRCS	= $(SRC_DIR)/main_bonus.c
+SHARED_OBJS	= $(SHARED_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+MAIN_OBJS	= $(MAIN_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+BONUS_OBJS	= $(BONUS_SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+DEPS		= $(SHARED_OBJS:.o=.d) $(MAIN_OBJS:.o=.d) $(BONUS_OBJS:.o=.d)
 
 COMPILE_DB	= compile_commands.json
 
@@ -51,8 +55,13 @@ all: $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(SHARED_OBJS) $(MAIN_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@
+
+bonus: $(CHECKER)
+
+$(CHECKER): $(SHARED_OBJS) $(BONUS_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(dir $@)
@@ -64,6 +73,7 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(CHECKER)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re:
@@ -72,6 +82,6 @@ re:
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 .DEFAULT_GOAL := all
 

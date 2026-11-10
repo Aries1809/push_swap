@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/09 19:33:27 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 05:12:11 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,13 @@ void	ps_parse(int32_t ac, char **av, t_ps *ps);
 int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index);
 void	stack_free(t_stack *stack);
 int32_t	stack_has_value(t_stack *stack, int32_t value);
+bool	stack_is_sorted(t_stack *s);
 
 /* DISORDER.C */
 double	ps_disorder(t_stack *stack);
 
 /* OPS.C */
+void	ps_apply(t_ps *ps, t_op op);
 void	ps_op(t_ps *ps, t_op op);
 void	ps_op_n(t_ps *ps, t_op op, int64_t n);
 
