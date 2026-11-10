@@ -6,11 +6,10 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/09 05:11:33 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/09 16:13:00 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 01:55:13 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include "push_swap.h"
 
 t_node	*st_pop_top(t_stack *s)

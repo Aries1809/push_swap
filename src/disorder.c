@@ -6,13 +6,12 @@
 /*   By: skaprash <skaprash@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 21:52:39 by skaprash          #+#    #+#             */
-/*   Updated: 2026/11/08 12:00:00 by skaprash         ###   ########.fr       */
+/*   Updated: 2026/11/10 01:55:16 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Share of all (i < j) pairs where a[i] > a[j]. 0 = sorted, 1 = reversed. */
 double	ps_disorder(t_stack *stack)
 {
 	double	mistakes;

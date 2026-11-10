@@ -6,13 +6,11 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/09 03:41:54 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/09 16:18:59 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 01:55:15 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
-#include <stdint.h>
 
 static void	ps_apply(t_ps *ps, t_op op)
 {

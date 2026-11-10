@@ -6,14 +6,11 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 04:44:05 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/09 04:45:08 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 01:49:34 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
-#include <stdlib.h>
 #include "push_swap.h"
-#include "libft.h"
 
 static void	ps_error(t_ps *ps)
 {

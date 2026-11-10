@@ -6,11 +6,10 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:00:00 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/09 04:44:30 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 01:49:51 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 
 /* Append a new node at the bottom of the stack. */

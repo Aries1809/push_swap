@@ -1,5 +1,17 @@
 # **************************************************************************** #
 #                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kseltenr <kseltenr@student.42vienna.com>   +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/11/09 19:10:29 by kseltenr          #+#    #+#              #
+#    Updated: 2026/11/10 01:55:41 by kseltenr        ###   ########.fr         #
+#                                                                              #
+# **************************************************************************** #
+
+# **************************************************************************** #
+#                                                                              #
 #                                                        :::      ::::::::     #
 #    Makefile                                          :+:      :+:    :+:     #
 #                                                    +:+ +:+         +:+       #
@@ -38,7 +50,8 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/init/stack.c \
 			  $(SRC_DIR)/operations/ops.c \
 			  $(SRC_DIR)/operations/op_helpers.c \
-			  $(SRC_DIR)/operations/primitives.c
+			  $(SRC_DIR)/operations/primitives.c \
+			  $(SRC_DIR)/algorithms/simple.c
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS		= $(OBJS:.o=.d)
 

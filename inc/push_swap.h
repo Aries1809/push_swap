@@ -6,17 +6,24 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/09 16:13:15 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/09 19:33:27 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "libft.h"
 # include <stdint.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <stddef.h>
+# include <unistd.h>
+
 
 // index is just the argument position rn which is kinda useless
-// we might want to change it to the sorted index, but we'd need to do stuff for that
+// we might want to change it to the sorted index
+// but we'd need to do stuff for that
 // (it would be useful for radix or chunk sorting)
 typedef struct s_node
 {
@@ -28,8 +35,8 @@ typedef struct s_node
 
 typedef struct s_stack
 {
-	t_node	*top;
-	t_node	*bot;
+	t_node		*top;
+	t_node		*bot;
 	uint64_t	size;
 }	t_stack;
 
@@ -85,17 +92,18 @@ void	ps_op(t_ps *ps, t_op op);
 void	ps_op_n(t_ps *ps, t_op op, int64_t n);
 
 /* OP_HELPERS.C */
-
 t_node	*st_pop_bot(t_stack *s);
 t_node	*st_pop_top(t_stack *s);
 void	st_push_bot(t_stack *s, t_node *n);
 void	st_push_top(t_stack *s, t_node *n);
 
 /* PRIMITIVES.C */
-
 void	st_push(t_stack *from, t_stack *to);
 void	st_rotate(t_stack *s);
 void	st_rrotate(t_stack *s);
 void	st_swap(t_stack *s);
+
+/* SIMPLE.C */
+void	s_simple(t_ps *ps);
 
 #endif
