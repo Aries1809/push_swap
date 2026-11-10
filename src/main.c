@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 22:01:59 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 02:03:45 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 03:26:10 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	ps_dispatch(t_ps *ps)
 {
 	if (ps->strategy == S_SIMPLE)
 		s_simple(ps);
+	if (ps->bench)
+		bench(ps);
 }
 
 int	main(int argc, char **argv)
@@ -37,6 +39,7 @@ int	main(int argc, char **argv)
 	t_ps	ps;
 
 	ps_parse(argc, argv, &ps);
+	ps.disorder = ps_disorder(&ps.a);
 	ps_dispatch(&ps);
 	ps_display(&ps);
 	stack_free(&ps.a);
