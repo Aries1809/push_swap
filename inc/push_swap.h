@@ -73,7 +73,7 @@ typedef struct s_ps
 	t_strat	strategy;
 	int8_t	bench;
 	double	disorder;
-	uint64_t	counts[OP_COUNT];
+	uint32_t	counts[OP_COUNT];
 }	t_ps;
 
 /* PARSING.C */

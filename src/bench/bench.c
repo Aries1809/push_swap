@@ -6,14 +6,14 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 02:51:32 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/10 04:23:52 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 04:27:23 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_dprintf.h"
 #include "push_swap.h"
 
-static void	b_print_ops(uint64_t *counts)
+static void	b_print_ops(uint32_t *counts)
 {
 	const char	*names;
 	int32_t		i;
@@ -30,14 +30,14 @@ static void	b_print_ops(uint64_t *counts)
 		if (i >= OP_RRA)
 			len = 3;
 		write(2, names + i * 3, len);
-		ft_dprintf(2, ":\t%d\t", counts[i++]);
+		ft_dprintf(2, ":\t%u\t", counts[i++]);
 	}
 	ft_dprintf(2, "\n");
 }
 
-static void	b_print_total(uint64_t *counts)
+static void	b_print_total(uint32_t *counts)
 {
-	uint64_t	total;
+	uint32_t	total;
 	int32_t		i;
 
 	total = 0;
