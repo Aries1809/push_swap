@@ -13,6 +13,10 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# ifndef DEBUG
+#  define DEBUG 0
+# endif
+
 # include "libft.h"
 # include <stdint.h>
 # include <stdbool.h>
