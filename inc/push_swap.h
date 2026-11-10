@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 05:12:11 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:22:00 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
-
 
 // index is just the argument position rn which is kinda useless
 // we might want to change it to the sorted index
@@ -72,11 +71,11 @@ typedef enum e_op
 
 typedef struct s_ps
 {
-	t_stack	a;
-	t_stack	b;
-	t_strat	strategy;
-	int8_t	bench;
-	double	disorder;
+	t_stack		a;
+	t_stack		b;
+	t_strat		strategy;
+	int8_t		bench;
+	double		disorder;
 	uint32_t	counts[OP_COUNT];
 }	t_ps;
 
