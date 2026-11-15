@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/09 03:41:54 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/10 05:11:50 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/10 10:50:51 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ void	ps_apply(t_ps *ps, t_op op)
 		st_rrotate(&ps->b);
 }
 
-// this is currently one write per operation
-// it should be fine, but it could be better
-// we could use buffered output instead
-// which would be faster if we have
-// lots of operations :leaves:
 static void	ps_op_print(t_op op)
 {
 	const char	*names;

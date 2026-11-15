@@ -43,6 +43,7 @@ typedef struct s_stack
 	uint64_t	size;
 }	t_stack;
 
+// also dont mess with the order of this either :gleep:
 typedef enum e_strat
 {
 	S_NONE,

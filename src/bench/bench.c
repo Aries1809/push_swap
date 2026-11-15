@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 02:51:32 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/10 04:27:23 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/14 20:32:04 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	b_print_ops(uint32_t *counts)
 	ft_dprintf(2, "[bench] ");
 	while (i < OP_COUNT)
 	{
-		if (i == OP_RA)
+		if (i == OP_PA || i == OP_RA || i == OP_RRA)
 			ft_dprintf(2, "\n[bench] ");
 		if (i >= OP_RRA)
 			len = 3;
