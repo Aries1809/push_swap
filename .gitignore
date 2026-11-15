@@ -3,6 +3,7 @@ push_swap
 checker
 obj
 compile_commands.json
+nums.c
 
 # Prerequisites
 *.d

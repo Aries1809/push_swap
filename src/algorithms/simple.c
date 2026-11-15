@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 01:20:26 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/15 04:17:23 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/15 14:54:12 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,29 @@ void	s_simple(t_ps *ps)
 	}
 }
 */
+
+static int32_t	get_max(int32_t first, int32_t second)
+{
+	if (first > second)
+		return (first);
+	else
+		return (second);
+}
+
+static void	sort_three(t_ps *ps)
+{
+	t_node	*t;
+	int32_t	max;
+
+	t = ps->a.top;
+	max = get_max(t->value, get_max(t->next->value, t->next->next->value));
+	if (t->value == max)
+		ps_op(ps, OP_RA);
+	else if (t->next->value == max)
+		ps_op(ps, OP_RRA);
+	if (ps->a.top->value > ps->a.top->next->value)
+		ps_op(ps, OP_SA);
+}
 
 /* INSERTION SORT */
 static uint64_t	insert_pos(t_stack *a, int32_t value)
@@ -72,8 +95,9 @@ void	s_simple(t_ps *ps)
 {
 	if (stack_is_sorted(&ps->a))
 		return ;
-	while (ps->a.size > 1)
+	while (ps->a.size > 3)
 		ps_op(ps, OP_PB);
+	sort_three(ps);
 	while (ps->b.size > 0)
 	{
 		bring_to_top(ps, insert_pos(&ps->a, ps->b.top->value));
