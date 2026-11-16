@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 01:20:26 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/16 03:04:55 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/16 03:23:31 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,6 @@ static uint64_t	insert_pos(t_stack *a, uint64_t index)
 	return (pos_of(a, best->index));
 }
 
-static void	bring_to_top(t_ps *ps, uint64_t pos)
-{
-	if (pos <= ps->a.size / 2)
-		ps_op_n(ps, OP_RA, pos);
-	else
-		ps_op_n(ps, OP_RRA, ps->a.size - pos);
-}
-
 void	s_simple(t_ps *ps)
 {
 	if (stack_is_sorted(&ps->a))
@@ -98,8 +90,8 @@ void	s_simple(t_ps *ps)
 	sort_three(ps);
 	while (ps->b.size > 0)
 	{
-		bring_to_top(ps, insert_pos(&ps->a, ps->b.top->index));
+		bring_to_top(ps, &ps->a, insert_pos(&ps->a, ps->b.top->index));
 		ps_op(ps, OP_PA);
 	}
-	bring_to_top(ps, pos_of(&ps->a, 0));
+	bring_to_top(ps, &ps->a, pos_of(&ps->a, 0));
 }

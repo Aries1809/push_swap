@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 06:22:00 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/16 03:23:07 by kseltenr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	st_swap(t_stack *s);
 
 /* ALG_HELPERS.C */
 uint64_t	pos_of(t_stack *s, uint64_t idx);
+void		bring_to_top(t_ps *ps, t_stack *s, uint64_t pos);
 
 /* SIMPLE.C */
 void	s_simple(t_ps *ps);
