@@ -24,10 +24,6 @@
 # include <stddef.h>
 # include <unistd.h>
 
-// index is just the argument position rn which is kinda useless
-// we might want to change it to the sorted index
-// but we'd need to do stuff for that
-// (it would be useful for radix or chunk sorting)
 typedef struct s_node
 {
 	uint64_t		index;
@@ -84,7 +80,8 @@ typedef struct s_ps
 void	ps_parse(int32_t ac, char **av, t_ps *ps);
 
 /* STACK.C */
-int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index);
+int32_t	stack_add(t_stack *stack, int32_t value);
+void	stack_normalize(t_stack *s);
 void	stack_free(t_stack *stack);
 int32_t	stack_has_value(t_stack *stack, int32_t value);
 bool	stack_is_sorted(t_stack *s);
@@ -108,6 +105,9 @@ void	st_push(t_stack *from, t_stack *to);
 void	st_rotate(t_stack *s);
 void	st_rrotate(t_stack *s);
 void	st_swap(t_stack *s);
+
+/* ALG_HELPERS.C */
+uint64_t	pos_of(t_stack *s, uint64_t idx);
 
 /* SIMPLE.C */
 void	s_simple(t_ps *ps);

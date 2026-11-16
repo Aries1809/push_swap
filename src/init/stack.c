@@ -6,21 +6,21 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:00:00 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 04:58:13 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/16 02:31:29 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /* Append a new node at the bottom of the stack. */
-int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index)
+int32_t	stack_add(t_stack *stack, int32_t value)
 {
 	t_node	*node;
 
 	node = malloc(sizeof(t_node));
 	if (!node)
 		return (0);
-	node->index = index;
+	node->index = 0;
 	node->value = value;
 	node->prev = stack->bot;
 	node->next = NULL;
@@ -31,6 +31,26 @@ int32_t	stack_add(t_stack *stack, int32_t value, uint64_t index)
 	stack->bot = node;
 	stack->size++;
 	return (1);
+}
+
+void	stack_normalize(t_stack *s)
+{
+	t_node	*n;
+	t_node	*m;
+
+	n = s->top;
+	while (n)
+	{
+		n->index = 0;
+		m = s->top;
+		while (m)
+		{
+			if (m->value < n->value)
+				n->index++;
+			m = m->next;
+		}
+		n = n->next;
+	}
 }
 
 int32_t	stack_has_value(t_stack *stack, int32_t value)

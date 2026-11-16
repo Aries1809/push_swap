@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 04:44:05 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/10 01:49:34 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/16 02:34:23 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int32_t	ps_atoi(const char **str, int32_t *out)
 
 /* Adds every space/tab-separated number in str to stack a.
  * An argument with no numbers at all ("", "   " or tabs only) is an error. */
-static int32_t	ps_add_arg(t_ps *ps, const char *str, uint64_t *index)
+static int32_t	ps_add_arg(t_ps *ps, const char *str)
 {
 	int32_t	num;
 	int32_t	count;
@@ -87,7 +87,7 @@ static int32_t	ps_add_arg(t_ps *ps, const char *str, uint64_t *index)
 		if (*str == ' ' || *str == '\t')
 			str++;
 		else if (!ps_atoi(&str, &num) || stack_has_value(&ps->a, num)
-			|| !stack_add(&ps->a, num, (*index)++))
+			|| !stack_add(&ps->a, num))
 			return (0);
 		else
 			count++;
@@ -99,10 +99,8 @@ static int32_t	ps_add_arg(t_ps *ps, const char *str, uint64_t *index)
 void	ps_parse(int32_t ac, char **av, t_ps *ps)
 {
 	int32_t		i;
-	uint64_t	index;
 
 	i = 0;
-	index = 0;
 	ft_bzero(ps, sizeof(*ps));
 	while (++i < ac)
 	{
@@ -111,7 +109,8 @@ void	ps_parse(int32_t ac, char **av, t_ps *ps)
 			if (!ps_is_flag(av[i], ps))
 				ps_error(ps);
 		}
-		else if (!ps_add_arg(ps, av[i], &index))
+		else if (!ps_add_arg(ps, av[i]))
 			ps_error(ps);
 	}
+	stack_normalize(&ps->a);
 }
