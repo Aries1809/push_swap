@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 02:55:20 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/16 03:21:29 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/16 19:04:02 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 void	bring_to_top(t_ps *ps, t_stack *s, uint64_t pos)
 {
-	t_op	r;
-	t_op	rr;
+	t_op		r;
+	t_op		rr;
+	uint64_t	size;
 
 	r = OP_RA;
 	rr = OP_RRA;
+	size = s->size;
 	if (s == &ps->b)
 	{
 		r = OP_RB;
 		rr = OP_RRB;
 	}
-	if (pos <= ps->a.size / 2)
+	if (pos <= size / 2)
 		ps_op_n(ps, r, pos);
 	else
-		ps_op_n(ps, rr, ps->a.size - pos);
+		ps_op_n(ps, rr, size - pos);
 }
 
 uint64_t	pos_of(t_stack *s, uint64_t idx)
