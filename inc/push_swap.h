@@ -113,6 +113,9 @@ void		bring_to_top(t_ps *ps, t_stack *s, uint64_t pos);
 /* SIMPLE.C */
 void	s_simple(t_ps *ps);
 
+/* COMPLEX.C */
+void	s_complex(t_ps *ps);
+
 /* BENCH.C */
 void	bench(t_ps *ps);
 
