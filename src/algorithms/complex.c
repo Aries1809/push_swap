@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 19:22:59 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/18 00:56:04 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 01:19:54 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,44 +63,6 @@ static void	set_split_locs(t_loc loc, t_split *dest)
 		dest->min.loc = BOT_B;
 }
 
-static t_node	*chunk_first(t_ps *ps, t_chunk *chunk)
-{
-	t_stack	*s;
-
-	s = &ps->b;
-	if (chunk->loc == TOP_A || chunk->loc == BOT_A)
-		s = &ps->a;
-	if (chunk->loc == TOP_A || chunk->loc == TOP_B)
-		return (s->top);
-	return (s->bot);
-}
-
-static t_node	*chunk_next(t_node *node, t_loc loc)
-{
-	if (loc == TOP_A || loc == TOP_B)
-		return (node->next);
-	return (node->prev);
-}
-
-static uint64_t	chunk_min(t_ps *ps, t_chunk chunk)
-{
-	uint64_t	i;
-	uint64_t	ret;
-	t_node		*node;
-
-	i = 1;
-	node = chunk_first(ps, &chunk);
-	ret = node->index;
-	while (i < chunk.size)
-	{
-		node = chunk_next(node, chunk.loc);
-		if (node->index < ret)
-			ret = node->index;
-		i++;
-	}
-	return (ret);
-}
-
 static void	route(t_ps *ps, t_loc from, t_chunk *to)
 {
 	move_from_to(ps, from, to->loc);
@@ -134,42 +96,6 @@ static void	split_chunks(t_ps *ps, t_chunk chunk, t_split *dest)
 			route(ps, chunk.loc, &dest->min);
 		chunk.size--;
 	}
-}
-
-static void	base_case(t_ps *ps, t_chunk *chunk)
-{
-	t_stack		*s;
-	uint64_t	cnt;
-
-	s = &ps->a;
-	cnt = chunk->size;
-	while (cnt--)
-		move_from_to(ps, chunk->loc, TOP_A);
-	if (chunk->size == 2 && s->top->index > s->top->next->index)
-		ps_op(ps, OP_SA);
-}
-
-static void	sort_chunk_three(t_ps *ps, t_chunk *chunk)
-{
-	uint64_t	cnt;
-
-	cnt = chunk->size;
-	while (cnt--)
-		move_from_to(ps, chunk->loc, TOP_A);
-	if (ps->a.size == 3)
-		return (sort_three(ps));
-	if (ps->a.top->index > ps->a.top->next->index
-		&& ps->a.top->index > ps->a.top->next->next->index)
-		ps_op(ps, OP_SA);
-	if (ps->a.top->index < ps->a.top->next->index
-		&& ps->a.top->next->index > ps->a.top->next->next->index)
-	{
-		ps_op(ps, OP_RA);
-		ps_op(ps, OP_SA);
-		ps_op(ps, OP_RRA);
-	}
-	if (ps->a.top->index > ps->a.top->next->index)
-		ps_op(ps, OP_SA);
 }
 
 static void	sort_chunk(t_ps *ps, t_chunk *chunk)

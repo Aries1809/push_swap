@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/16 03:23:07 by kseltenr         ###   ########.fr       */
+/*   Updated: 2026/11/18 01:19:49 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,53 +100,54 @@ typedef struct s_ps
 }	t_ps;
 
 /* PARSING.C */
-void	ps_parse(int32_t ac, char **av, t_ps *ps);
+void		ps_parse(int32_t ac, char **av, t_ps *ps);
 
 /* STACK.C */
-int32_t	stack_add(t_stack *stack, int32_t value);
-void	stack_normalize(t_stack *s);
-void	stack_free(t_stack *stack);
-int32_t	stack_has_value(t_stack *stack, int32_t value);
-bool	stack_is_sorted(t_stack *s);
+int32_t		stack_add(t_stack *stack, int32_t value);
+void		stack_free(t_stack *stack);
+int32_t		stack_has_value(t_stack *stack, int32_t value);
+bool		stack_is_sorted(t_stack *s);
+void		stack_normalize(t_stack *s);
 
 /* DISORDER.C */
-double	ps_disorder(t_stack *stack);
+double		ps_disorder(t_stack *stack);
 
 /* OPS.C */
-void	ps_apply(t_ps *ps, t_op op);
-void	ps_op(t_ps *ps, t_op op);
-void	ps_op_n(t_ps *ps, t_op op, int64_t n);
+void		ps_apply(t_ps *ps, t_op op);
+void		ps_op(t_ps *ps, t_op op);
+void		ps_op_n(t_ps *ps, t_op op, int64_t n);
 
 /* OP_HELPERS.C */
-t_node	*st_pop_bot(t_stack *s);
-t_node	*st_pop_top(t_stack *s);
-void	st_push_bot(t_stack *s, t_node *n);
-void	st_push_top(t_stack *s, t_node *n);
+t_node		*st_pop_bot(t_stack *s);
+t_node		*st_pop_top(t_stack *s);
+void		st_push_bot(t_stack *s, t_node *n);
+void		st_push_top(t_stack *s, t_node *n);
 
 /* PRIMITIVES.C */
-void	st_push(t_stack *from, t_stack *to);
-void	st_rotate(t_stack *s);
-void	st_rrotate(t_stack *s);
-void	st_swap(t_stack *s);
+void		st_push(t_stack *from, t_stack *to);
+void		st_rotate(t_stack *s);
+void		st_rrotate(t_stack *s);
+void		st_swap(t_stack *s);
 
-/* ALG_HELPERS.C */
-uint64_t	pos_of(t_stack *s, uint64_t idx);
+/* GENERAL_HELPERS */
 void		bring_to_top(t_ps *ps, t_stack *s, uint64_t pos);
-uint64_t	chunk_value(t_ps *ps, t_chunk *chunk, uint64_t i);
-
-/* MOVE.C */
-void	move_from_to(t_ps *ps, t_loc from, t_loc to);
-
-/* SMALL_SORT.C */
-void	sort_three(t_ps *ps);
+uint64_t	pos_of(t_stack *s, uint64_t idx);
+void		move_from_to(t_ps *ps, t_loc from, t_loc to);
+void		sort_three(t_ps *ps);
 
 /* SIMPLE.C */
-void	s_simple(t_ps *ps);
+void		s_simple(t_ps *ps);
+
+/* COMPLEX_HELPERS */
+void		base_case(t_ps *ps, t_chunk *chunk);
+uint64_t	chunk_min(t_ps *ps, t_chunk chunk);
+uint64_t	chunk_value(t_ps *ps, t_chunk *chunk, uint64_t i);
+void		sort_chunk_three(t_ps *ps, t_chunk *chunk);
 
 /* COMPLEX.C */
-void	s_complex(t_ps *ps);
+void		s_complex(t_ps *ps);
 
 /* BENCH.C */
-void	bench(t_ps *ps);
+void		bench(t_ps *ps);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/09 19:10:29 by kseltenr          #+#    #+#              #
-#    Updated: 2026/11/18 00:00:31 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/18 01:30:16 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,11 @@ SHARED_SRCS	= $(SRC_DIR)/init/parsing.c \
 			  $(SRC_DIR)/operations/ops.c \
 			  $(SRC_DIR)/operations/op_helpers.c \
 			  $(SRC_DIR)/operations/primitives.c \
-			  $(SRC_DIR)/algorithms/alg_helpers.c \
-			  $(SRC_DIR)/algorithms/move.c \
-			  $(SRC_DIR)/algorithms/small_sort.c \
+			  $(SRC_DIR)/algorithms/general_helpers/position.c \
+			  $(SRC_DIR)/algorithms/general_helpers/move.c \
+			  $(SRC_DIR)/algorithms/general_helpers/small_sort.c \
+			  $(SRC_DIR)/algorithms/complex_helpers/chunk.c \
+			  $(SRC_DIR)/algorithms/complex_helpers/little_sort.c \
 			  $(SRC_DIR)/algorithms/simple.c \
 			  $(SRC_DIR)/algorithms/complex.c \
 			  $(SRC_DIR)/bench/disorder.c \
