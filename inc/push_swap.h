@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/11 18:51:17 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/18 01:19:49 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 04:09:39 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_ps
 	t_stack		a;
 	t_stack		b;
 	t_strat		strategy;
+	char		*applied;
 	int8_t		bench;
 	double		disorder;
 	uint32_t	counts[OP_COUNT];
@@ -119,8 +120,8 @@ void		ps_emit(t_ps *ps, t_op op);
 void		ps_op_n(t_ps *ps, t_op op, int64_t n);
 
 /* COMBINE.C */
-void		ps_op(t_ps *ps, t_op op);
 void		ps_flush(t_ps *ps);
+void		ps_op(t_ps *ps, t_op op);
 
 /* OP_HELPERS.C */
 t_node		*st_pop_bot(t_stack *s);
@@ -136,8 +137,8 @@ void		st_swap(t_stack *s);
 
 /* GENERAL_HELPERS */
 void		bring_to_top(t_ps *ps, t_stack *s, uint64_t pos);
-uint64_t	pos_of(t_stack *s, uint64_t idx);
 void		move_from_to(t_ps *ps, t_loc from, t_loc to);
+uint64_t	pos_of(t_stack *s, uint64_t idx);
 void		sort_three(t_ps *ps);
 
 /* SIMPLE.C */
@@ -151,6 +152,9 @@ void		sort_chunk_three(t_ps *ps, t_chunk *chunk);
 
 /* COMPLEX.C */
 void		s_complex(t_ps *ps);
+
+/* ADAPTIVE.C */
+void		s_adaptive(t_ps *ps);
 
 /* BENCH.C */
 void		bench(t_ps *ps);

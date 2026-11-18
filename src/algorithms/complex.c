@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 19:22:59 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/18 01:19:54 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 04:15:09 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	s_complex(t_ps *ps)
 {
 	t_chunk	chunk;
 
+	ps->applied = "O(n log n)";
 	if (stack_is_sorted(&ps->a))
 		return ;
 	if (ps->a.size == 2)

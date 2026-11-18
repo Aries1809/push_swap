@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 02:51:32 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/14 20:32:04 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 04:16:56 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ static void	b_print_total(uint32_t *counts)
 	ft_dprintf(2, "[bench] total_ops:\t%u\n", total);
 }
 
-static void	b_print_strat(t_strat s)
+static void	b_print_strat(t_strat s, char *applied)
 {
-	const char	*names[] = {"None", "Simple / O(n²)", "Medium / O(n√n)",
-		"Complex / O(n log n)", "Adaptive / O(n√n)"};
+	const char	*names[] = {"None", "Simple / ", "Medium / ",
+		"Complex / ", "Adaptive / "};
 
-	ft_dprintf(2, "[bench] strategy:\t%s\n", names[s]);
+	ft_dprintf(2, "[bench] strategy:\t%s%s\n", names[s], applied);
 }
 
 static void	b_print_disorder(double fl)
@@ -66,7 +66,7 @@ static void	b_print_disorder(double fl)
 void	bench(t_ps *ps)
 {
 	b_print_disorder(ps->disorder);
-	b_print_strat(ps->strategy);
+	b_print_strat(ps->strategy, ps->applied);
 	b_print_total(ps->counts);
 	b_print_ops(ps->counts);
 }

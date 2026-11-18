@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 01:20:26 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/17 23:17:14 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 04:14:34 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static uint64_t	insert_pos(t_stack *a, uint64_t index)
 
 void	s_simple(t_ps *ps)
 {
+	ps->applied = "O(n²)";
 	if (stack_is_sorted(&ps->a))
 		return ;
 	if (ps->a.size == 2)
