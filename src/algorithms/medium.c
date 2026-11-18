@@ -6,7 +6,7 @@
 /*   By: sergk <sergk@student.42.fr>               #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/15 03:29:31 by sergk            #+#    #+#              */
-/*   Updated: 2026/11/18 07:21:09 by sergk           ###   ########.fr        */
+/*   Updated: 2026/11/18 23:20:48 by sergk           ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ static uint64_t ft_highest(t_ps *ps)
 
 static uint64_t ft_buckets(t_ps *ps)
 {
-    uint64_t    size;
+    uint64_t    root;
 
-    size = ps->a.size;
-    while (ps->a.size % --size == 0)
-        ;
-    return (size);
+    root = 1;
+    while (!(ps->a.size / root >= root))
+        root++;
+    return (root);
 }
+// previus formule while (ps->a.size % --size != 0)
 
 static void ft_sortb(t_ps *ps)
 {
@@ -52,6 +53,18 @@ static void ft_sortb(t_ps *ps)
     }
 }
 
+static uint64_t ft_weird_input(t_ps *ps)
+{
+    if (stack_is_sorted(&ps->a))
+	    return (1);
+    if (ps->a.size == 2)
+    {
+        ps_op(ps, OP_RA);
+        return (1);
+    }
+    return (0);
+}
+
 /* BUCKET SORT */
 void	s_medium(t_ps *ps)
 {
@@ -61,8 +74,8 @@ void	s_medium(t_ps *ps)
     uint64_t    size;
     uint64_t    bucket_size;
 
-    if (stack_is_sorted(&ps->a))
-	    return ;
+    if (ft_weird_input(ps) == 1)
+        return ;
     i = -1;
     size = ps->a.size;
     bucket = ft_buckets(ps);
@@ -72,7 +85,8 @@ void	s_medium(t_ps *ps)
         j = ps->a.size + 1;
         while (--j > 0 && ps->a.size > 0)
         {
-            if (ps->a.top->index <= bucket_size + (i * bucket_size) || i == bucket - 1)
+            if (ps->a.top->index <= bucket_size + (i * bucket_size) 
+                || i == bucket - 1)
                 ps_op(ps, OP_PB);
             else
                 ps_op(ps, OP_RA);
