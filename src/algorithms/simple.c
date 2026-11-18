@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 01:20:26 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/16 03:23:31 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/17 23:17:14 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ void	s_simple(t_ps *ps)
 	}
 }
 */
-
-static uint64_t	get_max(uint64_t first, uint64_t second)
-{
-	if (first > second)
-		return (first);
-	else
-		return (second);
-}
-
-static void	sort_three(t_ps *ps)
-{
-	t_node		*t;
-	uint64_t	max;
-
-	t = ps->a.top;
-	max = get_max(t->index, get_max(t->next->index, t->next->next->index));
-	if (t->index == max)
-		ps_op(ps, OP_RA);
-	else if (t->next->index == max)
-		ps_op(ps, OP_RRA);
-	if (ps->a.top->index > ps->a.top->next->index)
-		ps_op(ps, OP_SA);
-}
 
 /* INSERTION SORT */
 static uint64_t	insert_pos(t_stack *a, uint64_t index)

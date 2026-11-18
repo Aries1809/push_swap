@@ -66,6 +66,29 @@ typedef enum e_op
 	OP_COUNT
 }	t_op;
 
+/* For Complex Sort */
+typedef enum e_loc
+{
+	TOP_A,
+	BOT_A,
+	TOP_B,
+	BOT_B
+}	t_loc;
+
+typedef struct s_chunk
+{
+	t_loc		loc;
+	uint64_t	size;
+}	t_chunk;
+
+typedef struct s_split
+{
+	t_chunk	min;
+	t_chunk	mid;
+	t_chunk	max;
+}	t_split;
+/* - - - */
+
 typedef struct s_ps
 {
 	t_stack		a;
@@ -109,6 +132,13 @@ void	st_swap(t_stack *s);
 /* ALG_HELPERS.C */
 uint64_t	pos_of(t_stack *s, uint64_t idx);
 void		bring_to_top(t_ps *ps, t_stack *s, uint64_t pos);
+uint64_t	chunk_value(t_ps *ps, t_chunk *chunk, uint64_t i);
+
+/* MOVE.C */
+void	move_from_to(t_ps *ps, t_loc from, t_loc to);
+
+/* SMALL_SORT.C */
+void	sort_three(t_ps *ps);
 
 /* SIMPLE.C */
 void	s_simple(t_ps *ps);
