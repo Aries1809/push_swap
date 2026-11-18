@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/07 22:01:59 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/18 04:08:07 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 04:32:04 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ static void	ps_dispatch(t_ps *ps)
 	else if (ps->strategy == S_COMPLEX)
 		s_complex(ps);
 	else
+	{
 		s_adaptive(ps);
+		ps->strategy = S_ADAPTIVE;
+	}
 	ps_flush(ps);
 	if (ps->bench)
 		bench(ps);
