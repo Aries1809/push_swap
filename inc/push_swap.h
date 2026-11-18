@@ -150,6 +150,9 @@ uint64_t	chunk_min(t_ps *ps, t_chunk chunk);
 uint64_t	chunk_value(t_ps *ps, t_chunk *chunk, uint64_t i);
 void		sort_chunk_three(t_ps *ps, t_chunk *chunk);
 
+/* MEDIUM.C */
+void		s_medium(t_ps *ps);
+
 /* COMPLEX.C */
 void		s_complex(t_ps *ps);
 
