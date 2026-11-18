@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/09 19:10:29 by kseltenr          #+#    #+#              #
-#    Updated: 2026/11/18 01:30:16 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/18 03:41:43 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 SHARED_SRCS	= $(SRC_DIR)/init/parsing.c \
 			  $(SRC_DIR)/init/stack.c \
 			  $(SRC_DIR)/operations/ops.c \
+			  $(SRC_DIR)/operations/combine.c \
 			  $(SRC_DIR)/operations/op_helpers.c \
 			  $(SRC_DIR)/operations/primitives.c \
 			  $(SRC_DIR)/algorithms/general_helpers/position.c \
@@ -90,4 +91,3 @@ re:
 
 .PHONY: all clean fclean re bonus
 .DEFAULT_GOAL := all
-

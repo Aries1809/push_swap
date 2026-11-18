@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/09 03:41:54 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/10 10:50:51 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 03:45:57 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,12 @@ static void	ps_op_print(t_op op)
 		return ;
 }
 
-void	ps_op(t_ps *ps, t_op op)
+void	ps_emit(t_ps *ps, t_op op)
 {
-	ps_apply(ps, op);
 	ps->counts[op]++;
 	ps_op_print(op);
 }
 
-// ps_op prints every operations, even if it does nothing
-// that is not allowed (i think) so our algorithm
-// must never use operations which have no effect
 void	ps_op_n(t_ps *ps, t_op op, int64_t n)
 {
 	while (n-- > 0)

@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/21 04:44:05 by kseltenr          #+#    #+#             */
-/*   Updated: 2026/11/16 02:34:23 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/18 03:43:09 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int32_t	ps_is_flag(const char *str, t_ps *flag)
 	return (1);
 }
 
-/* Parses one number from *str up to a space, tab or '\0' and advances *str. */
 static int32_t	ps_atoi(const char **str, int32_t *out)
 {
 	int64_t		num;
@@ -74,8 +73,6 @@ static int32_t	ps_atoi(const char **str, int32_t *out)
 	return (1);
 }
 
-/* Adds every space/tab-separated number in str to stack a.
- * An argument with no numbers at all ("", "   " or tabs only) is an error. */
 static int32_t	ps_add_arg(t_ps *ps, const char *str)
 {
 	int32_t	num;
@@ -95,13 +92,13 @@ static int32_t	ps_add_arg(t_ps *ps, const char *str)
 	return (count > 0);
 }
 
-/* Fills ps->a from the arguments and sets the flags. */
 void	ps_parse(int32_t ac, char **av, t_ps *ps)
 {
 	int32_t		i;
 
 	i = 0;
 	ft_bzero(ps, sizeof(*ps));
+	ps->pending = OP_COUNT;
 	while (++i < ac)
 	{
 		if (!ft_strncmp(av[i], "--", 2))

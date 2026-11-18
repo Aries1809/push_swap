@@ -97,6 +97,7 @@ typedef struct s_ps
 	int8_t		bench;
 	double		disorder;
 	uint32_t	counts[OP_COUNT];
+	t_op		pending;
 }	t_ps;
 
 /* PARSING.C */
@@ -114,8 +115,12 @@ double		ps_disorder(t_stack *stack);
 
 /* OPS.C */
 void		ps_apply(t_ps *ps, t_op op);
-void		ps_op(t_ps *ps, t_op op);
+void		ps_emit(t_ps *ps, t_op op);
 void		ps_op_n(t_ps *ps, t_op op, int64_t n);
+
+/* COMBINE.C */
+void		ps_op(t_ps *ps, t_op op);
+void		ps_flush(t_ps *ps);
 
 /* OP_HELPERS.C */
 t_node		*st_pop_bot(t_stack *s);

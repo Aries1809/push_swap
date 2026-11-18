@@ -32,6 +32,7 @@ static void	ps_dispatch(t_ps *ps)
 		s_simple(ps);
 	if (ps->strategy == S_COMPLEX)
 		s_complex(ps);
+	ps_flush(ps);
 	if (ps->bench)
 		bench(ps);
 }
