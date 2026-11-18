@@ -6,7 +6,7 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/16 02:55:20 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/18 01:25:40 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/19 00:19:19 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,11 @@ uint64_t	pos_of(t_stack *s, uint64_t idx)
 		i++;
 	}
 	return (i);
+}
+
+uint64_t	cost_to_top(t_stack *s, uint64_t pos)
+{
+	if (pos <= s->size / 2)
+		return (pos);
+	return (s->size - pos);
 }
