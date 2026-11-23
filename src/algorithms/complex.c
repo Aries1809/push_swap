@@ -99,6 +99,8 @@ void	s_complex(t_ps *ps)
 		return (ps_op(ps, OP_SA));
 	if (ps->a.size == 3)
 		return (sort_three(ps));
+	if (ps->a.size <= 5)
+		return (sort_five(ps));
 	chunk.loc = TOP_A;
 	chunk.size = ps->a.size;
 	sort_chunk(ps, &chunk);

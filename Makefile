@@ -6,7 +6,7 @@
 #    By: kseltenr <kseltenr@student.42vienna.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/09 19:10:29 by kseltenr          #+#    #+#              #
-#    Updated: 2026/11/18 12:32:31 by kseltenr        ###   ########.fr         #
+#    Updated: 2026/11/22 19:28:42 by kseltenr        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM			= rm -f
 
 # nproc fails on mac but it should be fine cause we use linux
 JOBS		?= $(shell nproc)
-MAKEFLAGS	+= -j $(JOBS) -l $(JOBS)
+MAKEFLAGS	+= -j $(JOBS) -l $(JOBS) --no-print-directory
 
 ifeq ($(DEBUG),1)
 CFLAGS		+= -g3

@@ -1,0 +1,131 @@
+diff --git a/inc/push_swap.h b/inc/push_swap.h
+index 105e5bc..20cee98 100644
+--- a/inc/push_swap.h
++++ b/inc/push_swap.h
+@@ -141,6 +141,7 @@ void		move_from_to(t_ps *ps, t_loc from, t_loc to);
+ uint64_t	pos_of(t_stack *s, uint64_t idx);
+ uint64_t	cost_to_top(t_stack *s, uint64_t pos);
+ void		sort_three(t_ps *ps);
++void		sort_five(t_ps *ps);
+ 
+ /* SIMPLE.C */
+ void		s_simple(t_ps *ps);
+diff --git a/src/algorithms/complex.c b/src/algorithms/complex.c
+index 041e08e..136b03e 100644
+--- a/src/algorithms/complex.c
++++ b/src/algorithms/complex.c
+@@ -99,6 +99,8 @@ void	s_complex(t_ps *ps)
+ 		return (ps_op(ps, OP_SA));
+ 	if (ps->a.size == 3)
+ 		return (sort_three(ps));
++	if (ps->a.size <= 5)
++		return (sort_five(ps));
+ 	chunk.loc = TOP_A;
+ 	chunk.size = ps->a.size;
+ 	sort_chunk(ps, &chunk);
+diff --git a/src/algorithms/general_helpers/small_sort.c b/src/algorithms/general_helpers/small_sort.c
+index c438eb3..71d3942 100644
+--- a/src/algorithms/general_helpers/small_sort.c
++++ b/src/algorithms/general_helpers/small_sort.c
+@@ -6,7 +6,7 @@
+ /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
+ /*                                               +#+#+#+#+#+   +#+            */
+ /*   Created: 2026/11/17 23:16:47 by kseltenr         #+#    #+#              */
+-/*   Updated: 2026/11/17 23:17:04 by kseltenr        ###   ########.fr        */
++/*   Updated: 2026/11/23 05:00:00 by kseltenr        ###   ########.fr        */
+ /*                                                                            */
+ /* ************************************************************************** */
+ 
+@@ -34,3 +34,66 @@ void	sort_three(t_ps *ps)
+ 	if (ps->a.top->index > ps->a.top->next->index)
+ 		ps_op(ps, OP_SA);
+ }
++
++/* True if a is sorted except for a rotation (like 3 4 0 1 2):
++ * then bringing the smallest to the top is enough. */
++static bool	is_rotated_sorted(t_stack *s)
++{
++	t_node		*n;
++	uint64_t	breaks;
++
++	breaks = 0;
++	n = s->top;
++	while (n->next)
++	{
++		if (n->index > n->next->index)
++			breaks++;
++		n = n->next;
++	}
++	if (s->bot->index > s->top->index)
++		breaks++;
++	return (breaks <= 1);
++}
++
++/* Position of the element with a rank below limit that is
++ * cheapest to rotate to the top of a. */
++static uint64_t	cheapest_below(t_stack *a, uint64_t limit)
++{
++	t_node		*n;
++	uint64_t	i;
++	uint64_t	best;
++
++	n = a->top;
++	i = 0;
++	best = a->size;
++	while (n)
++	{
++		if (n->index < limit && (best == a->size
++				|| cost_to_top(a, i) < cost_to_top(a, best)))
++			best = i;
++		n = n->next;
++		i++;
++	}
++	return (best);
++}
++
++/* Sorts 4 or 5 elements: pushes the 1 or 2 smallest to b (cheapest
++ * first), sorts the 3 left in a, and pushes them back on top. */
++void	sort_five(t_ps *ps)
++{
++	uint64_t	limit;
++
++	if (is_rotated_sorted(&ps->a))
++		return (bring_to_top(ps, &ps->a, pos_of(&ps->a, 0)));
++	limit = ps->a.size - 3;
++	while (ps->a.size > 3)
++	{
++		bring_to_top(ps, &ps->a, cheapest_below(&ps->a, limit));
++		ps_op(ps, OP_PB);
++	}
++	sort_three(ps);
++	if (ps->b.size == 2 && ps->b.top->index < ps->b.top->next->index)
++		ps_op(ps, OP_SB);
++	while (ps->b.size > 0)
++		ps_op(ps, OP_PA);
++}
+diff --git a/src/algorithms/medium.c b/src/algorithms/medium.c
+index 05e83dd..9696eb9 100644
+--- a/src/algorithms/medium.c
++++ b/src/algorithms/medium.c
+@@ -78,6 +78,8 @@ static bool	ft_weird_input(t_ps *ps)
+ 		return (ps_op(ps, OP_SA), true);
+ 	if (ps->a.size == 3)
+ 		return (sort_three(ps), true);
++	if (ps->a.size <= 5)
++		return (sort_five(ps), true);
+ 	return (false);
+ }
+ 
+diff --git a/src/algorithms/simple.c b/src/algorithms/simple.c
+index 5e26545..adbf8d5 100644
+--- a/src/algorithms/simple.c
++++ b/src/algorithms/simple.c
+@@ -63,6 +63,8 @@ void	s_simple(t_ps *ps)
+ 		return ;
+ 	if (ps->a.size == 2)
+ 		return (ps_op(ps, OP_SA));
++	if (ps->a.size <= 5)
++		return (sort_five(ps));
+ 	while (ps->a.size > 3)
+ 		ps_op(ps, OP_PB);
+ 	sort_three(ps);

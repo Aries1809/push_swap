@@ -141,6 +141,7 @@ void		move_from_to(t_ps *ps, t_loc from, t_loc to);
 uint64_t	pos_of(t_stack *s, uint64_t idx);
 uint64_t	cost_to_top(t_stack *s, uint64_t pos);
 void		sort_three(t_ps *ps);
+void		sort_five(t_ps *ps);
 
 /* SIMPLE.C */
 void		s_simple(t_ps *ps);

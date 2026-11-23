@@ -63,6 +63,8 @@ void	s_simple(t_ps *ps)
 		return ;
 	if (ps->a.size == 2)
 		return (ps_op(ps, OP_SA));
+	if (ps->a.size <= 5)
+		return (sort_five(ps));
 	while (ps->a.size > 3)
 		ps_op(ps, OP_PB);
 	sort_three(ps);

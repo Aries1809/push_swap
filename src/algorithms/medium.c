@@ -78,6 +78,8 @@ static bool	ft_weird_input(t_ps *ps)
 		return (ps_op(ps, OP_SA), true);
 	if (ps->a.size == 3)
 		return (sort_three(ps), true);
+	if (ps->a.size <= 5)
+		return (sort_five(ps), true);
 	return (false);
 }
 
