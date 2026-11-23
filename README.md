@@ -291,7 +291,7 @@ src/algorithms/simple.c         insertion sort
 src/algorithms/medium.c         bucket sort
 src/algorithms/complex.c        3-way quicksort (+ radix sort kept for reference)
 src/algorithms/complex_helpers/ chunk access and base cases for the quicksort
-src/algorithms/general_helpers/ rotations, moves between locations, sort_three
+src/algorithms/general_helpers/ rotations, moves between locations, sort_three, sort_five
 src/algorithms/adaptive.c       disorder-based selection
 src/bench/                      disorder metric and --bench output
 libft/                          our libft (+ ft_printf, ft_dprintf, get_next_line)
@@ -300,12 +300,12 @@ libft/                          our libft (+ ft_printf, ft_dprintf, get_next_lin
 ## Contributions
 
 * **kseltenr:** project setup and Makefile, stack and parsing code, operations and
-  peephole combiner, disorder metric and `--bench` mode, the **simple** (insertion sort)
+  peephole combiner and `--bench` mode, the **simple** (insertion sort)
   and **complex** (3-way quicksort) strategies, the **adaptive** strategy, the bonus
   `checker`, and the final rework and tuning of the medium strategy.
-* **skaprash:** the first implementation of the **medium** bucket sort (distributing
-  buckets to b and extracting the maximum back to a), and the early sortedness-check
-  helper.
+* **skaprash:** disorder calculator, the first implementation of operations and the
+  **medium** bucket sort (distributing buckets to b and extracting the maximum back to a),
+  and the early sortedness-check helper.
 
 ## Resources
 
