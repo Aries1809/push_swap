@@ -6,31 +6,11 @@
 /*   By: kseltenr <kseltenr@student.42.fr>         #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/10 01:20:26 by kseltenr         #+#    #+#              */
-/*   Updated: 2026/11/18 04:14:34 by kseltenr        ###   ########.fr        */
+/*   Updated: 2026/11/23 05:08:20 by kseltenr        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/* BUBBLE SORT */
-/*
-void	s_simple(t_ps *ps)
-{
-	uint64_t	i;
-
-	while (!stack_is_sorted(&ps->a))
-	{
-		i = 0;
-		while (++i < ps->a.size)
-		{
-			if (ps->a.top->index > ps->a.top->next->index)
-				ps_op(ps, OP_SA);
-			ps_op(ps, OP_RA);
-		}
-		ps_op(ps, OP_RA);
-	}
-}
-*/
 
 /* INSERTION SORT */
 static uint64_t	insert_pos(t_stack *a, uint64_t index)
@@ -75,3 +55,23 @@ void	s_simple(t_ps *ps)
 	}
 	bring_to_top(ps, &ps->a, pos_of(&ps->a, 0));
 }
+
+/* BUBBLE SORT */
+/*
+void	s_simple(t_ps *ps)
+{
+	uint64_t	i;
+
+	while (!stack_is_sorted(&ps->a))
+	{
+		i = 0;
+		while (++i < ps->a.size)
+		{
+			if (ps->a.top->index > ps->a.top->next->index)
+				ps_op(ps, OP_SA);
+			ps_op(ps, OP_RA);
+		}
+		ps_op(ps, OP_RA);
+	}
+}
+*/
